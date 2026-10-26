@@ -53,7 +53,7 @@ function TopBar({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
         </a>
         <nav className={`nav ${open ? "open" : ""}`} aria-label="Sections">
           {C.nav.map((n) => (
-            <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)}>{n.label[lang]}</a>
+            <a key={n.id} href={n.href ? `${n.href}?lang=${lang}` : `#${n.id}`} onClick={() => setOpen(false)}>{n.label[lang]}</a>
           ))}
         </nav>
         <div className="topbar-tools">

@@ -16,13 +16,14 @@ export const priceLabel = (lang: "en" | "fr") =>
   lang === "en" ? `$${PRICE.toLocaleString("en-US")}` : `${PRICE.toLocaleString("fr-FR")} $`;
 export const ppsf = Math.round(PRICE / INTERIOR_SQFT); // ≈ 9,104
 
-export const nav: { id: string; label: L }[] = [
+export const nav: { id: string; label: L; href?: string }[] = [
   { id: "residence", label: l("Residence", "Résidence") },
   { id: "views", label: l("Views", "Vues") },
   { id: "building", label: l("Building", "Immeuble") },
   { id: "location", label: l("Location", "Quartier") },
   { id: "dining", label: l("Dining", "Tables") },
   { id: "gallery", label: l("Gallery", "Galerie") },
+  { id: "quartier", label: l("Neighbourhood", "Le quartier"), href: "/quartier" },
   { id: "terms", label: l("Acquisition", "Acquisition") },
   { id: "contact", label: l("Contact", "Contact") },
 ];
