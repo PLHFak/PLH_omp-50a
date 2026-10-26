@@ -15,8 +15,9 @@ export async function POST(req: Request) {
   }
 
   // Constant-time comparison of what was typed with the server-side password.
+  // Case-insensitive, so "ECHOOMP2026" and "echoomp2026" are both accepted.
   const pwEnv = process.env.SITE_PASSWORD as string;
-  const ok = safeEqual(password, pwEnv);
+  const ok = safeEqual(password.toUpperCase(), pwEnv.trim().toUpperCase());
   if (!ok) {
     await new Promise((r) => setTimeout(r, 600)); // slow down guessing
     return NextResponse.redirect(new URL(`/login?error=1&lang=${lang}`, base), 303);
