@@ -216,6 +216,10 @@ function Views({ t }: TT) {
             <figure key={g.src} className="fig"><img src={g.src} alt={t(g.caption)} loading="lazy" /><figcaption>{t(g.caption)}</figcaption></figure>
           ))}
         </div>
+        <div className="garden-posts">
+          <p className="small">{t(V.garden.postsNote)}</p>
+          <Embeds posts={V.garden.posts} />
+        </div>
 
         <figure className="fig nadir">
           <img src={V.nadirImage.src} alt={t(V.nadirImage.caption)} loading="lazy" />

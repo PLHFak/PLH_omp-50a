@@ -310,3 +310,4 @@ h4 { font-size: 24px; }
 .garden-text p { margin: 0 0 10px; font-size: 17px; line-height: 1.55; }
 .garden .fig img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; }
 @media (max-width: 860px) { .garden { grid-template-columns: 1fr 1fr; } .garden-text { grid-column: 1 / -1; } }
+.garden-posts { max-width: 900px; margin: 0 auto 30px; display: grid; gap: 10px; }

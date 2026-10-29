@@ -163,6 +163,9 @@ export const views = {
       { src: M("garden_evening.webp"), caption: l("An evening in the garden", "Un soir au jardin") },
       { src: M("garden_tent.webp"), caption: l("A marquee going up for an event", "Un chapiteau monté pour une réception") },
     ],
+    // Le Jardin's own posts (official embed): receptions in the garden.
+    posts: ["https://www.instagram.com/reel/Dd6_z-kvOkC/", "https://www.instagram.com/reel/DeAO-QePdID/"],
+    postsNote: l("The garden as its hosts show it: @lejardinsurmadison on Instagram.", "Le jardin tel que ses hôtes le montrent : @lejardinsurmadison sur Instagram."),
   },
   riversTitle: l("Both rivers", "Les deux fleuves"),
   riversText: l(
