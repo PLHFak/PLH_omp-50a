@@ -304,3 +304,9 @@ h4 { font-size: 24px; }
   .embeds { grid-template-columns: 1fr; }
   .street-photos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
+.garden { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 20px; align-items: start; margin: 8px 0 28px; }
+.garden > * { min-width: 0; }
+.garden-text p { margin: 0 0 10px; font-size: 17px; line-height: 1.55; }
+.garden .fig img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; }
+@media (max-width: 860px) { .garden { grid-template-columns: 1fr 1fr; } .garden-text { grid-column: 1 / -1; } }

@@ -153,6 +153,17 @@ export const views = {
   ],
   axisImage: { src: M("lhoest_night_madison_avenue.webp"), caption: l("Madison Avenue at night, looking north from Floor 50", "Madison Avenue la nuit, vers le nord depuis le 50e étage") },
   nadirImage: { src: M("lhoest_nadir_intersection.webp"), caption: l("From the terrace — looking straight down", "Depuis la terrasse — vue plongeante") },
+  garden: {
+    title: l("The garden below", "Le jardin d'en contrebas"),
+    text: l(
+      "Below the 50th floor, on the 28th-floor rooftop of One Madison Avenue, a 5,000 sq ft garden hosts dinners, weddings and celebrations, catered by Daniel Boulud's team. In the morning a marquee goes up; in the evening the umbrellas open and the lights come on. Far enough never to disturb or be disturbed, close enough to share a little of other people's celebrations.",
+      "En contrebas du 50e étage, sur le toit du 28e étage du One Madison Avenue, un jardin de 465 m² reçoit dîners, mariages et réceptions, servis par la maison de Daniel Boulud. Le matin, on voit monter un chapiteau ; le soir, les parasols s'ouvrent et les lumières s'allument. Assez loin pour ne jamais gêner ni être gêné, assez près pour partager un peu de la fête des autres."
+    ),
+    images: [
+      { src: M("garden_evening.webp"), caption: l("An evening in the garden", "Un soir au jardin") },
+      { src: M("garden_tent.webp"), caption: l("A marquee going up for an event", "Un chapiteau monté pour une réception") },
+    ],
+  },
   riversTitle: l("Both rivers", "Les deux fleuves"),
   riversText: l(
     "Floor 50 looks onto the Hudson River to the west and the East River to the east, a duality few Manhattan residences can claim. On clear days the Statue of Liberty appears on the southern horizon.",

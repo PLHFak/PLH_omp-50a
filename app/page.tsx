@@ -207,6 +207,16 @@ function Views({ t }: TT) {
           </div>
         </div>
 
+        <div className="garden">
+          <div className="garden-text">
+            <p className="eyebrow">{t(V.garden.title)}</p>
+            <p>{t(V.garden.text)}</p>
+          </div>
+          {V.garden.images.map((g) => (
+            <figure key={g.src} className="fig"><img src={g.src} alt={t(g.caption)} loading="lazy" /><figcaption>{t(g.caption)}</figcaption></figure>
+          ))}
+        </div>
+
         <figure className="fig nadir">
           <img src={V.nadirImage.src} alt={t(V.nadirImage.caption)} loading="lazy" />
           <figcaption>{t(V.nadirImage.caption)}</figcaption>
