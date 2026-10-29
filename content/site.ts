@@ -245,114 +245,92 @@ export const location = {
 };
 
 // ── Dining ───────────────────────────────────────────────────
+// Photos are the restaurants' own Instagram posts, shown through the official embed (credited, no copy).
+// Distances: walking estimates from 23 E 22nd St. Michelin: 2025 New York guide (2026 guide due 14 Dec 2026).
+type Resto = { name: string; badge: L; tag: L; desc: L; dist: number; addr: string; site?: string; ig?: string; fb?: string; book?: string; posts: string[] };
+const P = (c: string) => `https://www.instagram.com/p/${c}/`;
+const R = (c: string) => `https://www.instagram.com/reel/${c}/`;
 export const dining = {
   number: l("Dining", "Les tables"),
-  title: l("An Exceptional Table, at Every Corner", "Une grande table à chaque coin de rue"),
+  title: l("Five Michelin-starred tables within 300 m", "Cinq tables étoilées à moins de 300 m"),
   subtitle: l(
-    "From a three-Michelin-star institution to the original Shake Shack, all within a short walk.",
-    "D'une institution trois étoiles Michelin au Shake Shack d'origine, tout à quelques minutes à pied."
+    "Seven Michelin stars within 300 m of the front door, and more than a dozen notable tables within 550 m, all on foot.",
+    "Sept étoiles Michelin à moins de 300 m de la porte, et plus d'une dizaine d'autres belles tables à moins de 550 m, toutes à pied."
   ),
-  feature: {
-    eyebrow: l("Across 23rd Street", "De l'autre côté de la 23e rue"),
-    title: "Le Jardin sur Madison",
-    tagline: l("Your evening begins — or ends — at home.", "La soirée commence — ou finit — à la maison."),
-    paras: [
-      l(
-        "On the 28th-floor rooftop of One Madison Avenue, the Met Life building at the foot of the clock tower, Daniel Boulud's team hosts dinners and receptions in a 5,000 sq ft garden terrace and a 6,200 sq ft salon designed by Rockwell Group.",
-        "Sur le toit du 28e étage du One Madison Avenue, l'immeuble Met Life au pied de la tour de l'horloge, l'équipe de Daniel Boulud reçoit dîners et réceptions dans un jardin en terrasse de 465 m² et un salon de 575 m² signé Rockwell Group."
-      ),
-      l(
-        "It is about 150 m from the lobby: cocktails on Boulud's rooftop, then the 50th-floor terrace looking down on that same garden.",
-        "Il se trouve à environ 150 m du hall : un cocktail sur le toit de Boulud, puis la terrasse du 50e étage, avec vue plongeante sur ce même jardin."
-      ),
+  starred: [
+    { name: "Eleven Madison Park", badge: l("3 Michelin stars", "3 étoiles Michelin"), tag: l("Tasting menu", "Menu dégustation"), dist: 200, addr: "11 Madison Ave",
+      desc: l("Daniel Humm's seasonal tasting menu, facing the park; it can be served fully plant-based.", "Le menu dégustation de saison de Daniel Humm, face au parc ; il peut être entièrement végétal."),
+      site: "https://www.elevenmadisonpark.com", ig: "https://www.instagram.com/elevenmadisonpark/", book: "https://resy.com/cities/new-york-ny/venues/eleven-madison-park", posts: [P("De4FVpyFy_V"), P("De-oZ0AEbsQ")] },
+    { name: "Jua", badge: l("1 Michelin star", "1 étoile Michelin"), tag: l("Korean, wood fire", "Coréen, feu de bois"), dist: 50, addr: "36 E 22nd St",
+      desc: l("Hoyoung Kim's wood-fired Korean tasting menu, across the street.", "Le menu dégustation coréen au feu de bois de Hoyoung Kim, de l'autre côté de la rue."),
+      site: "https://www.juanyc.com", ig: "https://www.instagram.com/jua.nyc/", posts: [P("Dd9Sas_ofDX"), P("DdoiNI3IDaY")] },
+    { name: "Gramercy Tavern", badge: l("1 Michelin star", "1 étoile Michelin"), tag: l("Seasonal American", "Américain de saison"), dist: 200, addr: "42 E 20th St",
+      desc: l("Danny Meyer's institution since 1994, chef Michael Anthony; nine James Beard Awards.", "L'institution de Danny Meyer depuis 1994, chef Michael Anthony ; neuf James Beard Awards."),
+      site: "https://www.gramercytavern.com", ig: "https://www.instagram.com/gramercytavern/", fb: "https://www.facebook.com/GramercyTavern", posts: [P("Dd4ldSGmYDK"), P("DduaSvJGet_")] },
+    { name: "Rezdôra", badge: l("1 Michelin star", "1 étoile Michelin"), tag: l("Emilia-Romagna", "Émilie-Romagne"), dist: 200, addr: "27 E 20th St",
+      desc: l("Stefano Secchi's fresh pasta from Emilia-Romagna, rolled every morning.", "Les pâtes fraîches d'Émilie-Romagne de Stefano Secchi, abaissées chaque matin."),
+      site: "https://www.rezdora.nyc", ig: "https://www.instagram.com/rezdoranyc/", posts: [P("DcObmGQjtUv"), P("Daxsb1JDlx4")] },
+    { name: "COTE", badge: l("1 Michelin star", "1 étoile Michelin"), tag: l("Korean steakhouse", "Steakhouse coréen"), dist: 280, addr: "16 W 22nd St",
+      desc: l("Korean steakhouse with its own dry-aging room and tabletop grills.", "Steakhouse coréen avec sa propre salle de maturation et des grils à table."),
+      site: "https://www.cotekoreansteakhouse.com", ig: "https://www.instagram.com/cote_nyc/", posts: [] },
+  ] as Resto[],
+  eataly: {
+    title: "Eataly Flatiron", dist: 250, addr: "200 Fifth Ave",
+    intro: l("The Italian market at the foot of the Flatiron, with three tables worth the visit:", "Le marché italien au pied du Flatiron, avec trois tables qui valent le détour :"),
+    picks: [
+      { n: "AMALFI Rooftop", d: l("A covered rooftop fourteen floors up, Amalfi-coast menu, open in winter.", "Un toit couvert à quatorze étages, carte de la côte amalfitaine, ouvert l'hiver.") },
+      { n: "Il Pesce", d: l("Crudo and oysters opened to order.", "Crudo et huîtres ouvertes à la commande.") },
+      { n: "Bar Milano", d: l("A mid-century Milanese bar and restaurant.", "Un bar-restaurant milanais des années cinquante.") },
     ],
-    facts: [
-      { l: l("Address", "Adresse"), v: "One Madison Avenue, rooftop" },
-      { l: l("Cuisine", "Cuisine"), v: "Daniel Boulud" },
-      { l: l("Capacity", "Capacité"), v: l("168 seated · 300 standing", "168 assis · 300 debout") },
-      { l: l("Access", "Accès"), v: l("Private events, by reservation", "Événements privés, sur réservation") },
-    ],
-    image: M("resto_lejardin.webp"),
-    instagram: "https://www.instagram.com/p/DOgaSebDZEF/",
-    url: "https://www.lejardinsurmadison.com",
+    site: "https://www.eataly.com/us_en/stores/nyc-flatiron", ig: "https://www.instagram.com/eatalynewyorkcity/", fb: "https://www.facebook.com/EatalyNYCFlatiron",
+    posts: [P("De8LIlpjQd8"), R("DfAChFWi7vC")],
   },
-  list: [
-    {
-      name: "Eleven Madison Park", badge: l("3 Michelin stars", "3 étoiles Michelin"),
-      tag: l("Contemporary tasting menu", "Menu dégustation contemporain"),
-      desc: l(
-        "Daniel Humm's landmark in the Met Life North building, facing the park. Largely plant-based, with oysters, lobster and duck offered again since October 2025.",
-        "L'adresse de Daniel Humm dans l'immeuble Met Life North, face au parc. Essentiellement végétale, avec à nouveau huîtres, homard et canard depuis octobre 2025."
-      ),
-      img: M("resto_elevenmadisonpark.webp"), url: "https://www.elevenmadisonpark.com", dist: "250 m",
-    },
-    {
-      name: "Gramercy Tavern", badge: l("1 Michelin star", "1 étoile Michelin"),
-      tag: l("Seasonal New American", "Cuisine américaine de saison"),
-      desc: l(
-        "Danny Meyer's New York institution since 1994, chef Michael Anthony. Listed among North America's 50 Best Restaurants in 2026.",
-        "L'institution new-yorkaise de Danny Meyer depuis 1994, chef Michael Anthony. Classée parmi les 50 meilleurs restaurants d'Amérique du Nord en 2026."
-      ),
-      img: null, url: "https://www.gramercytavern.com", dist: "250 m",
-    },
-    {
-      name: "La Tête d'Or by Daniel", badge: l("Michelin Guide", "Guide Michelin"),
-      tag: l("Daniel Boulud's steakhouse", "Le steakhouse de Daniel Boulud"),
-      desc: l(
-        "Daniel Boulud's first steakhouse, at the base of One Madison Avenue: dry-aged beef, prime seafood and a Bordeaux-rich cellar, in a room by Rockwell Group.",
-        "Le premier steakhouse de Daniel Boulud, au pied du One Madison Avenue : bœuf maturé, produits de la mer d'exception et une cave riche en bordeaux, dans une salle signée Rockwell Group."
-      ),
-      img: M("resto_latetedor.webp"), url: "https://www.latetedorbydaniel.com", dist: "150 m",
-    },
-    {
-      name: "Hawksmoor NYC", badge: l("Steakhouse", "Steakhouse"),
-      tag: l("London steakhouse", "Steakhouse londonien"),
-      desc: l(
-        "The London steakhouse in the vaulted assembly hall of the landmarked United Charities Building on East 22nd Street.",
-        "Le steakhouse londonien dans la grande salle voûtée du United Charities Building, immeuble classé de la 22e rue Est."
-      ),
-      img: M("resto_hawksmoor.webp"), url: "https://thehawksmoor.com/us", dist: "250 m",
-    },
-    {
-      name: "AMALFI Rooftop — Eataly", badge: l("Rooftop", "Rooftop"),
-      tag: l("Italian rooftop", "Rooftop italien"),
-      desc: l(
-        "Eataly Flatiron's seasonal rooftop restaurant, overlooking the Flatiron Building, above New York's best-known Italian market.",
-        "Le restaurant saisonnier sur le toit d'Eataly Flatiron, face au Flatiron Building, au-dessus du marché italien le plus connu de New York."
-      ),
-      img: M("resto_eataly.webp"), url: "https://www.eataly.com/us_en/stores/nyc-flatiron", dist: "200 m",
-    },
-    {
-      name: "ilili", badge: l("NoMad", "NoMad"),
-      tag: l("Modern Lebanese", "Libanais moderne"),
-      desc: l(
-        "Modern Lebanese mezze on Fifth Avenue, one of the neighborhood's favorite tables for sharing.",
-        "Mezzés libanais modernes sur la Cinquième Avenue, l'une des tables préférées du quartier pour partager."
-      ),
-      img: M("resto_ilili.webp"), url: "https://www.opentable.com/r/ilili-new-york", dist: "550 m",
-    },
-    {
-      name: "BLACKBARN", badge: l("NoMad", "NoMad"),
-      tag: l("Farm-to-table American", "Américain de la ferme à la table"),
-      desc: l(
-        "Seasonal farm-to-table cooking in a dramatic barnwood interior on East 26th Street.",
-        "Cuisine de saison, de la ferme à la table, dans un spectaculaire décor de bois de grange sur la 26e rue Est."
-      ),
-      img: M("resto_blackbarn.webp"), url: "https://www.blackbarnrestaurant.com", dist: "500 m",
-    },
-    {
-      name: "Shake Shack", badge: l("The original", "L'original"),
-      tag: l("Madison Square Park", "Madison Square Park"),
-      desc: l(
-        "Born as a hot-dog cart in the park in 2001, it became the permanent kiosk in 2004: a New York institution.",
-        "Né en 2001 comme chariot de hot-dogs dans le parc, devenu kiosque permanent en 2004 : une institution new-yorkaise."
-      ),
-      img: M("resto_shakeshack.webp"), url: "https://shakeshack.com", dist: "150 m",
-    },
-  ],
+  more: [
+    { name: "Cosme", badge: l("Michelin Guide", "Guide Michelin"), tag: l("Modern Mexican", "Mexicain contemporain"), dist: 100, addr: "35 E 21st St",
+      desc: l("Enrique Olvera's modern Mexican: duck carnitas and the husk meringue.", "Le Mexique contemporain d'Enrique Olvera : carnitas de canard et meringue au maïs."),
+      site: "https://www.cosmenyc.com", ig: "https://www.instagram.com/cosmenyc/", posts: [P("DctjWcIOAnt"), P("DbBxmN-FgvL")] },
+    { name: "The Clocktower", badge: l("Michelin Guide", "Guide Michelin"), tag: l("Inside the clock tower", "Dans la tour de l'horloge"), dist: 200, addr: "5 Madison Ave",
+      desc: l("Stephen Starr and Jason Atherton's British brasserie on the second floor of the clock tower: beef Wellington, billiards room.", "La brasserie britannique de Stephen Starr et Jason Atherton au deuxième étage de la tour de l'horloge : bœuf Wellington, salle de billard."),
+      site: "https://www.theclocktowernyc.com", ig: "https://www.instagram.com/clocktowernyc/", fb: "https://www.facebook.com/TheClocktowerNYC", posts: [P("DeCwt1Agd7C"), P("Ddlyt4CE4d_")] },
+    { name: "La Tête d'Or by Daniel", badge: l("Michelin Guide", "Guide Michelin"), tag: l("Daniel Boulud's steakhouse", "Le steakhouse de Daniel Boulud"), dist: 280, addr: "318 Park Ave S",
+      desc: l("Boulud's first steakhouse, American with French sauces, and its wagyu prime rib trolley.", "Le premier steakhouse de Boulud, américain aux sauces françaises, et son chariot de côte de wagyu."),
+      site: "https://www.latetedorbydaniel.com", ig: "https://www.instagram.com/latetedorbydaniel/", posts: [P("DcjpqdnG2ho"), P("DekBwUdGwS5")] },
+    { name: "Hawksmoor NYC", badge: l("Steakhouse", "Steakhouse"), tag: l("London steakhouse", "Steakhouse londonien"), dist: 280, addr: "109 E 22nd St",
+      desc: l("The London steakhouse in the vaulted hall of the landmarked United Charities Building.", "Le steakhouse londonien dans la salle voûtée du United Charities Building, immeuble classé."),
+      site: "https://www.hawksmoornyc.com", ig: "https://www.instagram.com/hawksmoornyc/", fb: "https://www.facebook.com/HawksmoorNYC", book: "https://www.opentable.com/r/hawksmoor-new-york", posts: [P("DeXNFg2DJck")] },
+    { name: "BLACKBARN", badge: l("NoMad", "NoMad"), tag: l("Farm to table", "De la ferme à la table"), dist: 400, addr: "19 E 26th St",
+      desc: l("Chef-owned farm-to-table cooking and dry-aged steaks in a barnwood room.", "Cuisine de la ferme à la table et bœuf maturé, dans un décor de bois de grange."),
+      site: "https://www.blackbarnrestaurant.com", ig: "https://www.instagram.com/blackbarnrestaurant/", fb: "https://www.facebook.com/blackbarnrestaurant", posts: [P("De4xSrwmN6e"), P("De945wAmPct")] },
+    { name: "Upland", badge: l("Michelin Guide", "Guide Michelin"), tag: l("California-Mediterranean", "Californien-méditerranéen"), dist: 450, addr: "345 Park Ave S",
+      desc: l("Justin Smillie's cooking for Stephen Starr: pizzas, pastas, the burger.", "La cuisine de Justin Smillie pour Stephen Starr : pizzas, pâtes, le burger."),
+      site: "https://www.uplandnyc.com", ig: "https://www.instagram.com/upland_nyc/", fb: "https://www.facebook.com/UplandNYC", posts: [P("DeAFAZ2ARWS"), P("DeuiTS2AUT-")] },
+    { name: "ilili", badge: l("NoMad", "NoMad"), tag: l("Modern Lebanese", "Libanais contemporain"), dist: 550, addr: "236 Fifth Ave",
+      desc: l("Philippe Massoud's modern Lebanese cooking: duck shawarma, mezze to share.", "La cuisine libanaise contemporaine de Philippe Massoud : shawarma de canard, mezzés à partager."),
+      site: "https://www.ililirestaurants.com/location/ilili-nyc", ig: "https://www.instagram.com/ililirestaurants/", fb: "https://www.facebook.com/ililinyc", book: "https://www.opentable.com/ilili", posts: [P("Der12G9mx-n"), P("DclZYaNRP5L")] },
+    { name: "Shake Shack", badge: l("The original", "L'original"), tag: l("In the park", "Dans le parc"), dist: 150, addr: "Madison Square Park",
+      desc: l("The original kiosk, in the park since 2004, where the chain began.", "Le kiosque d'origine, dans le parc depuis 2004, là où la chaîne est née."),
+      site: "https://shakeshack.com", posts: [] },
+  ] as Resto[],
+  street: {
+    title: l("Life on foot", "La vie à pied"),
+    text: l(
+      "Below the building, Broadway has become a string of pedestrian plazas: tables under yellow umbrellas, a lunch in the sun at the foot of the Flatiron, the park across the street. Here one walks to dinner.",
+      "Au pied de l'immeuble, Broadway est devenu une suite de places piétonnes : des tables sous les parasols jaunes, un déjeuner au soleil au pied du Flatiron, le parc de l'autre côté de la rue. Ici, on va dîner à pied."
+    ),
+    photos: [M("street_terrace_masked.webp"), M("street_plaza_umbrellas.webp"), M("street_broadway_plaza.webp")],
+  },
+  potter: {
+    eyebrow: l("935 Broadway · 150 m", "935 Broadway · 150 m"),
+    title: l("A neighbourhood with charm, in every sense", "Un quartier qui a du charme, au sens propre"),
+    text: l(
+      "When Warner Bros. looked for a home for Harry Potter New York, it chose the corner of Broadway and 22nd Street, at the foot of the Flatiron. Opened in June 2021 on three floors, it was billed as the largest Harry Potter store in the world. Brands choose the places where people walk; this one chose ours.",
+      "Quand Warner Bros. a cherché où installer Harry Potter New York, elle a choisi l'angle de Broadway et de la 22e rue, au pied du Flatiron. Ouvert en juin 2021 sur trois étages, il a été présenté comme le plus grand magasin Harry Potter au monde. Les enseignes choisissent les lieux où l'on passe ; celle-ci a choisi le nôtre."
+    ),
+    site: "https://www.harrypotterstore.com", ig: "https://www.instagram.com/harrypottershop/",
+  },
   note: l(
-    "Michelin status as of the 2025 New York guide. Photos from public sources; all establishments are independent of One Madison.",
-    "Distinctions selon le Guide Michelin New York 2025. Photos de sources publiques ; tous les établissements sont indépendants de One Madison."
+    "Michelin distinctions from the 2025 New York guide; the 2026 guide is due in December 2026. Distances are walking estimates. Photos are the restaurants' own Instagram posts, shown through Instagram's embed; all establishments are independent of One Madison.",
+    "Distinctions du Guide Michelin New York 2025 ; le guide 2026 est attendu en décembre 2026. Distances à pied, estimées. Les photos sont les publications Instagram des restaurants eux-mêmes, affichées par l'intégration officielle d'Instagram ; tous les établissements sont indépendants de One Madison."
   ),
 };
 

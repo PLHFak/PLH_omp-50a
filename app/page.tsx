@@ -297,52 +297,89 @@ function Location({ t }: TT) {
   );
 }
 
+function Embeds({ posts }: { posts: string[] }) {
+  if (!posts.length) return null;
+  return (
+    <div className={`embeds n${posts.length}`}>
+      {posts.map((u) => (
+        <blockquote key={u} className="instagram-media" data-instgrm-permalink={u} data-instgrm-version="14">
+          <a href={u} target="_blank" rel="noopener noreferrer">Instagram</a>
+        </blockquote>
+      ))}
+    </div>
+  );
+}
+
+function Links({ r, t }: { r: { site?: string; ig?: string; fb?: string; book?: string }; t: TT["t"] }) {
+  return (
+    <div className="rlinks">
+      {r.site && <a href={r.site} target="_blank" rel="noopener noreferrer">{t({ en: "Website", fr: "Site" })} ↗</a>}
+      {r.ig && <a href={r.ig} target="_blank" rel="noopener noreferrer">Instagram ↗</a>}
+      {r.fb && <a href={r.fb} target="_blank" rel="noopener noreferrer">Facebook ↗</a>}
+      {r.book && <a href={r.book} target="_blank" rel="noopener noreferrer">{t({ en: "Book", fr: "Réserver" })} ↗</a>}
+    </div>
+  );
+}
+
 function Dining({ t }: TT) {
   const D = C.dining;
-  const F = D.feature;
   useEffect(() => {
+    const w = window as unknown as { instgrm?: { Embeds: { process: () => void } } };
+    if (w.instgrm) { w.instgrm.Embeds.process(); return; }
     if (document.getElementById("ig-embed")) return;
     const s = document.createElement("script");
     s.id = "ig-embed"; s.async = true; s.src = "https://www.instagram.com/embed.js";
     document.body.appendChild(s);
-  }, []);
+  }, [t]);
+  const Card = ({ r }: { r: (typeof D.starred)[number] }) => (
+    <article className="rcard">
+      <div className="rcard-text">
+        <div className="resto-top"><span className="badge">{t(r.badge)}</span><span className="dist">{r.dist} m</span></div>
+        <h4>{r.name}</h4>
+        <p className="resto-tag">{t(r.tag)} · {r.addr}</p>
+        <p>{t(r.desc)}</p>
+        <Links r={r} t={t} />
+      </div>
+      <Embeds posts={r.posts} />
+    </article>
+  );
+  const S = D.street, H = D.potter, E = D.eataly;
   return (
     <section id="dining" className="sec">
       <div className="wrap">
         <SectionHead t={t} number={D.number} title={D.title} subtitle={D.subtitle} />
 
-        <article className="feature">
+        <div className="rlist">{[...D.starred].sort((a, b) => a.dist - b.dist).map((r) => <Card key={r.name} r={r} />)}</div>
+
+        <article className="feature eataly">
           <div className="feature-text">
-            <p className="eyebrow">{t(F.eyebrow)}</p>
-            <h3>{F.title}</h3>
-            <p className="tagline">{t(F.tagline)}</p>
-            {F.paras.map((p, k) => <p key={k}>{t(p)}</p>)}
-            <dl className="facts">
-              {F.facts.map((f) => <div key={f.l.en}><dt>{t(f.l)}</dt><dd>{t(f.v)}</dd></div>)}
-            </dl>
-            <a className="link" href={F.url} target="_blank" rel="noopener noreferrer">lejardinsurmadison.com ↗</a>
+            <p className="eyebrow">{E.addr} · {E.dist} m</p>
+            <h3>{E.title}</h3>
+            <p>{t(E.intro)}</p>
+            <dl className="facts">{E.picks.map((p) => <div key={p.n}><dt>{p.n}</dt><dd>{t(p.d)}</dd></div>)}</dl>
+            <Links r={E} t={t} />
           </div>
-          <div className="feature-media">
-            <img src={F.image} alt="Le Jardin sur Madison" loading="lazy" />
-            <blockquote className="instagram-media" data-instgrm-permalink={F.instagram} data-instgrm-version="14">
-              <a href={F.instagram} target="_blank" rel="noopener noreferrer">{t({ en: "View on Instagram", fr: "Voir sur Instagram" })}</a>
-            </blockquote>
-          </div>
+          <Embeds posts={E.posts} />
         </article>
 
-        <div className="restos">
-          {D.list.map((r) => (
-            <a className="resto" key={r.name} href={r.url} target="_blank" rel="noopener noreferrer">
-              {r.img ? <img src={r.img} alt={r.name} /> : <div className="resto-ph"><span>{r.name}</span></div>}
-              <div className="resto-b">
-                <div className="resto-top"><span className="badge">{t(r.badge)}</span><span className="dist">{r.dist}</span></div>
-                <h4>{r.name}</h4>
-                <p className="resto-tag">{t(r.tag)}</p>
-                <p>{t(r.desc)}</p>
-              </div>
-            </a>
-          ))}
-        </div>
+        <h3 className="rsub">{t({ en: "And around the corner", fr: "Et tout autour" })}</h3>
+        <div className="rlist">{[...D.more].sort((a, b) => a.dist - b.dist).map((r) => <Card key={r.name} r={r} />)}</div>
+
+        <article className="street">
+          <div className="street-text">
+            <h3>{t(S.title)}</h3>
+            <p>{t(S.text)}</p>
+          </div>
+          <div className="street-photos">{S.photos.map((f) => <img key={f} src={f} alt="" loading="lazy" />)}</div>
+        </article>
+
+        <article className="potter">
+          <p className="eyebrow">{t(H.eyebrow)}</p>
+          <h3>{t(H.title)}</h3>
+          <p>{t(H.text)}</p>
+          <Links r={H} t={t} />
+        </article>
+
         <p className="small">{t(D.note)}</p>
       </div>
     </section>

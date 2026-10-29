@@ -273,3 +273,34 @@ h4 { font-size: 24px; }
 .q-table .nw { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .q-src { margin: 12px 0 18px; padding-left: 18px; font-family: var(--sans); font-size: 13px; line-height: 1.9; }
 .q-src a { color: var(--ink2); }
+
+/* dining — cards with the restaurants' own Instagram posts */
+.rlist { display: grid; gap: 22px; margin: 8px 0 40px; }
+.rcard { display: grid; grid-template-columns: minmax(240px, 1fr) 2fr; gap: 24px; padding: 22px; background: #fbf8f2; border: 1px solid var(--line); align-items: start; }
+.rcard > * { min-width: 0; }
+.rcard-text { display: grid; gap: 8px; align-content: start; }
+.rcard-text h4 { margin: 0; font-size: 26px; }
+.rcard-text p { margin: 0; font-size: 16px; line-height: 1.5; }
+.rlinks { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 6px; font-family: var(--sans); font-size: 12px; letter-spacing: 0.06em; }
+.rlinks a { color: var(--bronze); text-decoration: none; border-bottom: 1px solid currentColor; }
+.embeds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.embeds.n1 { grid-template-columns: minmax(0, 1fr); max-width: 420px; }
+.embeds .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: 100% !important; background: #fff; }
+.feature.eataly .embeds .instagram-media { max-width: 100% !important; }
+.rsub { font-size: clamp(26px, 3vw, 34px); margin: 8px 0 18px; }
+.street { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin: 10px 0 34px; align-items: center; }
+.street > * { min-width: 0; }
+.street h3 { margin: 0 0 10px; font-size: clamp(26px, 3vw, 34px); }
+.street p { margin: 0; font-size: 17px; line-height: 1.55; }
+.street-photos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.street-photos img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.potter { background: var(--dark2); color: var(--cream-on-dark); padding: clamp(24px, 4vw, 40px); display: grid; gap: 12px; margin-bottom: 20px; }
+.potter h3 { color: #fff; margin: 0; font-size: clamp(28px, 3.4vw, 40px); }
+.potter p { margin: 0; max-width: 760px; font-size: 17px; line-height: 1.55; }
+.potter .eyebrow { color: var(--gold); }
+.potter .rlinks a { color: var(--gold); }
+@media (max-width: 860px) {
+  .rcard, .street { grid-template-columns: 1fr; }
+  .embeds { grid-template-columns: 1fr; }
+  .street-photos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
