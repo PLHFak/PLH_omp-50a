@@ -10,11 +10,11 @@ export const M = (f: string) => `/media/${f}`;
 
 // ── Key figures ──────────────────────────────────────────────
 export const PRICE = 14_995_000; // asking price in USD (REBNY listing, 29 Sept 2026)
-export const INTERIOR_SQFT = 1647;
+export const INTERIOR_SQFT = 2723; // official interior area (REBNY listing, offering-plan measure)
 export const TERRACE_SQFT = 481;
 export const priceLabel = (lang: "en" | "fr") =>
   lang === "en" ? `$${PRICE.toLocaleString("en-US")}` : `${PRICE.toLocaleString("fr-FR")} $`;
-export const ppsf = Math.round(PRICE / INTERIOR_SQFT); // ≈ 9,104
+export const ppsf = Math.round(PRICE / INTERIOR_SQFT); // ≈ 5,507
 
 export const nav: { id: string; label: L; href?: string }[] = [
   { id: "residence", label: l("Residence", "Résidence") },
@@ -45,7 +45,7 @@ export const hero = {
   ],
   stats: [
     { v: "50", l: l("Floor", "Étage") },
-    { v: "1,647", l: l("Interior sq ft", "pi² intérieurs") },
+    { v: "2,723", l: l("Interior sq ft", "pi² intérieurs") },
     { v: "481", l: l("Terrace sq ft", "pi² de terrasses") },
     { v: "360°", l: l("Views", "Vues") },
     { v: "3", l: l("Bedrooms", "Chambres") },
@@ -71,7 +71,7 @@ export const residence = {
       "Le plan s'organise autour d'un palier d'ascenseur central. Le séjour et la salle à manger occupent les expositions sud et est, trois chambres se répartissent entre les ailes ouest et est, et les terrasses s'ouvrent depuis le séjour."
     ),
   ],
-  roomsTitle: l("Room by room — official square footage", "Pièce par pièce — surfaces officielles"),
+  roomsTitle: l("Main rooms — measured areas", "Pièces principales — surfaces mesurées"),
   rooms: [
     { room: l("Kitchen & living room", "Cuisine et séjour"), sqft: "708", sqm: "65.8" },
     { room: l("Primary bedroom", "Chambre principale"), sqft: "291", sqm: "27.0" },
@@ -86,6 +86,7 @@ export const residence = {
     { room: l("East terrace", "Terrasse est"), sqft: "~144", sqm: "~13.4" },
   ],
   totalInterior: { sqft: "1,647", sqm: "153.1" },
+  officialInterior: l("Official interior area: 2,723 sq ft (253 m²), as listed. The room areas above exclude bathrooms, closets, kitchen storage and walls.", "Surface intérieure officielle : 2 723 pi² (253 m²), selon l'annonce. Les surfaces de pièces ci-dessus n'incluent ni salles de bains, ni rangements, ni murs."),
   terraceNote: l(
     "Terrace surfaces are estimated from the architectural plans. Official certification on request.",
     "Les surfaces des terrasses sont estimées d'après les plans d'architecte. Certification officielle sur demande."

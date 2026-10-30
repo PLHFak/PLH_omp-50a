@@ -134,10 +134,11 @@ function Residence({ t }: TT) {
               {R.rooms.map((r) => (
                 <div className="trow" key={r.room.en}><span>{t(r.room)}</span><span>{r.sqft} sq ft</span><span>{r.sqm} m²</span></div>
               ))}
-              <div className="trow total"><span>{t({ en: "Total interior", fr: "Total intérieur" })}</span><span>{R.totalInterior.sqft} sq ft</span><span>{R.totalInterior.sqm} m²</span></div>
+              <div className="trow total"><span>{t({ en: "Total of these rooms", fr: "Total de ces pièces" })}</span><span>{R.totalInterior.sqft} sq ft</span><span>{R.totalInterior.sqm} m²</span></div>
               {R.terraces.map((r) => (
                 <div className="trow" key={r.room.en}><span>{t(r.room)}</span><span>{r.sqft} sq ft</span><span>{r.sqm} m²</span></div>
               ))}
+              <p className="small">{t(R.officialInterior)}</p>
               <p className="small">* {t(R.terraceNote)}</p>
             </div>
           </div>
