@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { COOKIE_MAX_AGE, COOKIE_NAME, expectedToken, safeEqual } from "@/lib/auth";
+import { COMMON, WHO_COOKIE, lookupCode, signWho, whoCookieOptions } from "@/lib/omp";
 
 export const runtime = "edge";
 
@@ -17,7 +18,10 @@ export async function POST(req: Request) {
   // Constant-time comparison of what was typed with the server-side password.
   // Case-insensitive, so "ECHOOMP2026" and "echoomp2026" are both accepted.
   const pwEnv = process.env.SITE_PASSWORD as string;
-  const ok = safeEqual(password.toUpperCase(), pwEnv.trim().toUpperCase());
+  const shared = safeEqual(password.toUpperCase(), pwEnv.trim().toUpperCase());
+  // Personal codes (trigram + OMP + 2026) carrying the "vitrine" zone also open the site.
+  const row = shared || !password ? null : await lookupCode(password);
+  const ok = shared || (!!row && row.zones.includes("vitrine"));
   if (!ok) {
     await new Promise((r) => setTimeout(r, 600)); // slow down guessing
     return NextResponse.redirect(new URL(`/login?error=1&lang=${lang}`, base), 303);
@@ -31,5 +35,7 @@ export async function POST(req: Request) {
     path: "/",
     maxAge: COOKIE_MAX_AGE,
   });
+  const who = await signWho(row ? row.code : COMMON);
+  if (who) res.cookies.set(WHO_COOKIE, who, whoCookieOptions);
   return res;
 }
