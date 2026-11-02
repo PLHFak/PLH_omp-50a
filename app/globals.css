@@ -311,3 +311,7 @@ h4 { font-size: 24px; }
 .garden .fig img { aspect-ratio: 3 / 4; object-fit: cover; width: 100%; }
 @media (max-width: 860px) { .garden { grid-template-columns: 1fr 1fr; } .garden-text { grid-column: 1 / -1; } }
 .garden-posts { max-width: 900px; margin: 0 auto 30px; display: grid; gap: 10px; }
+
+.pasta-video { margin: 18px 0 6px; }
+.pasta-video video { width: 100%; aspect-ratio: 4 / 3; display: block; background: #000; border-radius: 4px; }
+.pasta-video figcaption { margin-top: 8px; font-size: 13px; opacity: .75; }

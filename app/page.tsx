@@ -372,6 +372,10 @@ function Dining({ t }: TT) {
             <h3>{E.title}</h3>
             <p>{t(E.intro)}</p>
             <dl className="facts">{E.picks.map((p) => <div key={p.n}><dt>{p.n}</dt><dd>{t(p.d)}</dd></div>)}</dl>
+            <figure className="pasta-video">
+              <video src="/video/eataly_pasta.mp4" poster="/video/eataly_pasta_poster.jpg" controls playsInline muted autoPlay loop preload="metadata" />
+              <figcaption>{t({ en: "Fresh pasta, made in front of you at Eataly · the owner's video", fr: "Les pâtes fraîches, préparées sous vos yeux chez Eataly · vidéo du propriétaire" })}</figcaption>
+            </figure>
             <Links r={E} t={t} />
           </div>
           <Embeds posts={E.posts} />
