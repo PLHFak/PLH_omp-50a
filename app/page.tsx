@@ -33,6 +33,7 @@ export default function Home() {
       <Location t={t} />
       <Dining t={t} />
       <Gallery t={t} />
+      <Potential lang={lang} />
       <Residents t={t} />
       <Terms t={t} lang={lang} />
       <Contact t={t} lang={lang} />
@@ -453,6 +454,24 @@ function Gallery({ t }: TT) {
           </div>
         )}
       </div>
+    </section>
+  );
+}
+
+// After the gallery: a door to the dedicated site of the 2016 LABSCAPE study (3D simulations).
+const POTENTIAL_URL = "https://omp-landscape.vercel.app";
+function Potential({ lang }: { lang: Lang }) {
+  const en = lang === "en";
+  return (
+    <section id="potential" className="sec pot">
+      <a className="pot-in" href={`${POTENTIAL_URL}/?lang=${lang}`} target="_blank" rel="noopener">
+        <img src="/media/projet/sim_ilot_lave.webp" alt="" loading="lazy" />
+        <div className="pot-text">
+          <p className="eyebrow light">{en ? "The potential · 3D project 2016" : "Le potentiel · projet 3D 2016"}</p>
+          <h2>{en ? "What the 50th floor can become" : "Ce que le 50ᵉ étage peut devenir"}</h2>
+          <span className="pot-cta">{en ? "See the 3D simulations ↗" : "Voir les simulations 3D ↗"}</span>
+        </div>
+      </a>
     </section>
   );
 }
