@@ -6,10 +6,17 @@ export const runtime = "edge";
 
 export async function POST(req: Request) {
   const form = await req.formData();
-  const password = String(form.get("password") ?? "").trim();
-  const lang = form.get("lang") === "fr" ? "fr" : "en";
+  return enter(String(form.get("password") ?? "").trim(), form.get("lang") === "fr" ? "fr" : "en", new URL(req.url));
+}
+
+// Direct link: /api/login?c=CODE&lang=fr opens the site with a personal code, without typing it.
+export async function GET(req: Request) {
+  const u = new URL(req.url);
+  return enter((u.searchParams.get("c") ?? "").trim(), u.searchParams.get("lang") === "fr" ? "fr" : "en", u);
+}
+
+async function enter(password: string, lang: "fr" | "en", base: URL) {
   const expected = await expectedToken();
-  const base = new URL(req.url);
 
   if (!expected) {
     return NextResponse.redirect(new URL(`/login?error=config&lang=${lang}`, base), 303);
