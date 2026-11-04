@@ -383,7 +383,6 @@ export const gallery = {
     { f: "lhoest_terrace_night_south.webp", c: l("South terrace — Lower Manhattan, both rivers — photo: Lhoest", "Terrasse sud — Lower Manhattan, les deux fleuves — photo : Lhoest") },
     { f: "interior_south_night_view.webp", c: l("Corner bedroom — south and west at night", "Chambre d'angle — sud et ouest la nuit") },
     { f: "IMG_7407.webp", c: l("Floor 50", "50e étage") },
-    { f: "IMG_8351.webp", c: l("Floor 50", "50e étage") },
     { f: "IMG_7626.webp", c: l("Floor 50", "50e étage") },
     { f: "IMG_7800.webp", c: l("Floor 50 — terrace", "50e étage — terrasse") },
     { f: "IMG_2307.webp", c: l("Floor 50 — panoramic view", "50e étage — vue panoramique") },
