@@ -21,6 +21,7 @@ export const nav: { id: string; label: L; href?: string }[] = [
   { id: "views", label: l("Views", "Vues") },
   { id: "building", label: l("Building", "Immeuble") },
   { id: "location", label: l("Location", "Quartier") },
+  { id: "value", label: l("Value", "Valeur") },
   { id: "dining", label: l("Dining", "Tables") },
   { id: "gallery", label: l("Gallery", "Galerie") },
   { id: "quartier", label: l("Neighbourhood", "Le quartier"), href: "/quartier" },

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import * as C from "@/content/site";
 import type { L } from "@/content/site";
+import Decisions from "./decisions/Decisions";
 
 type Lang = "en" | "fr";
 const tx = (lang: Lang, v: L | string) => (typeof v === "string" ? v : v[lang]);
@@ -31,6 +32,7 @@ export default function Home() {
       <Views t={t} />
       <Building t={t} />
       <Location t={t} />
+      <Decisions lang={lang} />
       <Dining t={t} />
       <Gallery t={t} />
       <Potential lang={lang} />
