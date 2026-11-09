@@ -359,6 +359,7 @@ export const gallery = {
   poster: M("slideshow-poster.jpg"),
   photos: [
     { f: "IMG_2229.webp", c: l("360° night panorama — Empire State, Met Life campanile, Madison Square Park", "Panorama nocturne à 360° — Empire State, campanile Met Life, Madison Square Park") },
+    { f: "tower_dusk.webp", c: l("One Madison at dusk — the glass tower above Flatiron", "One Madison au crépuscule — la tour de verre au-dessus du Flatiron") },
     { f: "01.webp", c: l("North — Met Life Tower and the Madison Avenue axis", "Nord — Met Life Tower et l'axe de Madison Avenue") },
     { f: "02.webp", c: l("East — East River at golden hour", "Est — East River à l'heure dorée") },
     { f: "03.webp", c: l("South — Lower Manhattan, One World Trade", "Sud — Lower Manhattan, One World Trade") },
