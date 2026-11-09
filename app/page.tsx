@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import * as C from "@/content/site";
 import type { L } from "@/content/site";
 import Decisions from "./decisions/Decisions";
+import Liberty from "./liberty/Liberty";
 
 type Lang = "en" | "fr";
 const tx = (lang: Lang, v: L | string) => (typeof v === "string" ? v : v[lang]);
@@ -30,6 +31,7 @@ export default function Home() {
       <Hero t={t} lang={lang} />
       <Residence t={t} />
       <Views t={t} />
+      <Liberty lang={lang} />
       <Building t={t} />
       <Location t={t} />
       <Decisions lang={lang} />

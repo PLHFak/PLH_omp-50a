@@ -19,6 +19,7 @@ export const ppsf = Math.round(PRICE / INTERIOR_SQFT); // ≈ 5,507
 export const nav: { id: string; label: L; href?: string }[] = [
   { id: "residence", label: l("Residence", "Résidence") },
   { id: "views", label: l("Views", "Vues") },
+  { id: "liberty", label: l("Liberty", "Liberté") },
   { id: "building", label: l("Building", "Immeuble") },
   { id: "location", label: l("Location", "Quartier") },
   { id: "value", label: l("Value", "Valeur") },
