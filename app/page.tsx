@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import * as C from "@/content/site";
 import type { L } from "@/content/site";
 import Decisions from "./decisions/Decisions";
-import Liberty from "./liberty/Liberty";
 
 type Lang = "en" | "fr";
 const tx = (lang: Lang, v: L | string) => (typeof v === "string" ? v : v[lang]);
@@ -31,7 +30,6 @@ export default function Home() {
       <Hero t={t} lang={lang} />
       <Residence t={t} />
       <Views t={t} />
-      <Liberty lang={lang} />
       <Building t={t} />
       <Location t={t} />
       <Decisions lang={lang} />
@@ -211,20 +209,6 @@ function Views({ t }: TT) {
               {V.terraceFigures.map((f) => <div key={f.v}><dt>{f.v}</dt><dd>{t(f.l)}</dd></div>)}
             </dl>
           </div>
-        </div>
-
-        <div className="garden">
-          <div className="garden-text">
-            <p className="eyebrow">{t(V.garden.title)}</p>
-            <p>{t(V.garden.text)}</p>
-          </div>
-          {V.garden.images.map((g) => (
-            <figure key={g.src} className="fig"><img src={g.src} alt={t(g.caption)} loading="lazy" /><figcaption>{t(g.caption)}</figcaption></figure>
-          ))}
-        </div>
-        <div className="garden-posts">
-          <p className="small">{t(V.garden.postsNote)}</p>
-          <Embeds posts={V.garden.posts} />
         </div>
 
         <figure className="fig nadir">
