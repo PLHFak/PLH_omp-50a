@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import * as C from "@/content/site";
 import type { L } from "@/content/site";
 import Decisions from "./decisions/Decisions";
+import Park from "./park/Park";
 
 type Lang = "en" | "fr";
 const tx = (lang: Lang, v: L | string) => (typeof v === "string" ? v : v[lang]);
@@ -30,6 +31,7 @@ export default function Home() {
       <Hero t={t} lang={lang} />
       <Residence t={t} />
       <Views t={t} />
+      <Park lang={lang} />
       <Building t={t} />
       <Location t={t} />
       <Decisions lang={lang} />
@@ -85,30 +87,16 @@ function SectionHead({ t, number, title, subtitle }: TT & { number: L | string; 
 }
 
 function Hero({ t, lang }: TT & { lang: Lang }) {
-  const [i, setI] = useState(0);
-  const n = C.hero.slides.length;
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-    const id = setInterval(() => setI((x) => (x + 1) % n), 6000);
-    return () => clearInterval(id);
-  }, [n]);
+  const s = C.hero.slides[0]; // still image, no slideshow (Pierre, 10 Nov 2026)
   return (
     <section id="top" className="hero">
-      {C.hero.slides.map((s, k) => (
-        <img key={s.src} src={s.src} alt={t(s.alt)} className={`hero-img ${k === i ? "on" : ""}`} fetchPriority={k === 0 ? "high" : "auto"} />
-      ))}
+      <img src={s.src} alt={t(s.alt)} className="hero-img on" fetchPriority="high" />
       <div className="hero-shade" />
       <div className="hero-in">
         <p className="eyebrow light">{t(C.hero.eyebrow)}</p>
         <h1>{C.hero.title}<span>{t(C.hero.floor)}</span></h1>
         <p className="hero-lead">{t(C.hero.lead)}</p>
         <p className="hero-price">{C.priceLabel(lang)}</p>
-        <div className="hero-dots">
-          {C.hero.slides.map((s, k) => (
-            <button key={s.src} aria-label={`${k + 1}`} className={k === i ? "on" : ""} onClick={() => setI(k)} />
-          ))}
-        </div>
       </div>
       <dl className="hero-stats">
         {C.hero.stats.map((s) => (
