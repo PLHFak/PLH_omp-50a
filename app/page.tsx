@@ -358,9 +358,6 @@ function Dining({ t }: TT) {
           <Embeds posts={E.posts} />
         </article>
 
-        <h3 className="rsub">{t({ en: "And around the corner", fr: "Et tout autour" })}</h3>
-        <div className="rlist">{[...D.more].sort((a, b) => a.dist - b.dist).map((r) => <Card key={r.name} r={r} />)}</div>
-
         <article className="street">
           <div className="street-text">
             <h3>{t(S.title)}</h3>
