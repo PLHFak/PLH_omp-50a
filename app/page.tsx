@@ -5,6 +5,7 @@ import * as C from "@/content/site";
 import type { L } from "@/content/site";
 import Decisions from "./decisions/Decisions";
 import Park from "./park/Park";
+import Above from "./above/Above";
 
 type Lang = "en" | "fr";
 const tx = (lang: Lang, v: L | string) => (typeof v === "string" ? v : v[lang]);
@@ -32,6 +33,7 @@ export default function Home() {
       <Residence t={t} />
       <Views t={t} />
       <Park lang={lang} />
+      <Above lang={lang} />
       <Building t={t} />
       <Location t={t} />
       <Decisions lang={lang} />
