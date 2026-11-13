@@ -111,15 +111,15 @@ export const views = {
   number: l("02 — Views & Terraces", "02 — Vues et terrasses"),
   title: l("360° Unobstructed", "360° sans obstacle"),
   subtitle: l(
-    "Madison Avenue begins at the foot of the building and runs straight north for 9.7 km. From the 50th floor, you look up the entire avenue.",
-    "Madison Avenue commence au pied de l'immeuble et file en ligne droite vers le nord sur 9,7 km. Depuis le 50e étage, on regarde l'avenue entière en enfilade."
+    "Madison Avenue begins at the foot of the building and runs straight north for 9.7 km. From the 50th floor, you look up the entire avenue. Across the way, the Empire State Building: one of the rare views in New York that show its whole silhouette, revealed over three quarters of its height — more than 82 of its 102 floors.",
+    "Madison Avenue commence au pied de l'immeuble et file en ligne droite vers le nord sur 9,7 km. Depuis le 50e étage, on regarde l'avenue entière en enfilade. En face, l'Empire State Building : l'une des rares vues de New York qui montrent sa silhouette entière, dévoilée sur les trois quarts de sa hauteur, soit plus de 82 de ses 102 étages."
   ),
   directions: [
     { dir: l("North", "Nord"), icon: "↑", items: [
       l("Madison Avenue — 9.7 km straight axis", "Madison Avenue — axe rectiligne de 9,7 km"),
       l("Met Life Tower campanile (adjacent)", "Campanile de la Met Life Tower (voisin)"),
       l("Madison Square Park directly below", "Madison Square Park juste en dessous"),
-      l("Empire State Building · Midtown", "Empire State Building · Midtown"),
+      l("Empire State Building — whole silhouette, more than 82 floors in view", "Empire State Building — silhouette entière, plus de 82 étages visibles"),
     ] },
     { dir: l("South", "Sud"), icon: "↓", items: [
       l("Lower Manhattan skyline", "Skyline de Lower Manhattan"),
